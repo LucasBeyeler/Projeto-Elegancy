@@ -31,7 +31,7 @@ def login():
 
         # Aqui você pode inserir os dados no banco de dados ou fazer qualquer validação necessária
         conn = get_db_connection()
-        conn.execute('INSERT INTO usuarios (nome, email) VALUES (?, ?)', (username, password))
+        conn.execute('INSERT INTO usuarios (nome_usuario, senha) VALUES (?, ?)', (username, password))
         conn.commit()
         conn.close()
 
