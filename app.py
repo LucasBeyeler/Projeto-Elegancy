@@ -23,20 +23,24 @@ def feminino():
 def masculino():
     return render_template('masculino.html')
 
-@app.route('/add', methods=('GET', 'POST'))
-def add():
+@app.route('/login', methods=['GET', 'POST'])
+def login():
     if request.method == 'POST':
-        nome = request.form['nome']
-        email = request.form['email']
-        
+        username = request.form['username']
+        password = request.form['password']
+
+        # Aqui você pode inserir os dados no banco de dados ou fazer qualquer validação necessária
         conn = get_db_connection()
-        conn.execute('INSERT INTO usuarios (nome, email) VALUES (?, ?)', (nome, email))
+        conn.execute('INSERT INTO usuarios (nome, email) VALUES (?, ?)', (username, password))
         conn.commit()
         conn.close()
-        
+
+        # Redirecionar para a página inicial após o login
         return redirect(url_for('index'))
     
+    # Se o método for GET, renderizar o formulário de login
     return render_template('login.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True)
