@@ -15,6 +15,14 @@ def index():
     conn.close()
     return render_template('index.html', usuarios=usuarios)
 
+@app.route('/feminino')
+def feminino():
+    return render_template('feminino.html')
+
+@app.route('/masculino')
+def masculino():
+    return render_template('masculino.html')
+
 @app.route('/add', methods=('GET', 'POST'))
 def add():
     if request.method == 'POST':
@@ -28,7 +36,7 @@ def add():
         
         return redirect(url_for('index'))
     
-    return render_template('add.html')
+    return render_template('login.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
